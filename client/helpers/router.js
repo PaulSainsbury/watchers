@@ -24,7 +24,7 @@ var filters = {
 
   isLoggedIn: function() {
     if (!(Meteor.loggingIn() || Meteor.user())) {
-      Mesages.insert({type: 'warning', message: 'You must be logged in to access that page'});
+      flash('You must be logged in to access that page', 'warning');
       this.render('homepage');
     } else {
       this.next();

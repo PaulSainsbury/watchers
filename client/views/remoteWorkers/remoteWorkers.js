@@ -30,8 +30,6 @@ Template.remoteWorkers.rendered = function () {
   self.video = document.querySelector('video');
   var canvas = document.querySelector('canvas');
   var ctx = canvas.getContext('2d');
-  var btnTakeScreenshot = document.querySelector('#btnTakeScreenshot');
-  var btnStartTimer = document.querySelector('#btnStartTimer');
 
   self.localMediaStream = null;
   navigator.getUserMedia = navigator.getUserMedia ||
@@ -63,23 +61,21 @@ Template.remoteWorkers.rendered = function () {
   });
 
   self.timerID = null;
-  function startTimer() {
+  self.startTimer = function () {
+    var btnStartTimer = document.querySelector('#btnStartTimer');
+
     if (self.timerID) {
       btnStartTimer.innerHTML = "Start Timer";
       window.clearInterval(self.timerID);
       self.timerID = null;
     } else {
-      snapshot();
-      self.timerID = window.setInterval(snapshot, 10000);
+      self.snapshot();
+      self.timerID = window.setInterval(self.snapshot, 10000);
       btnStartTimer.innerHTML = "Stop Timer";
     }
-  }
-  btnTakeScreenshot.addEventListener('click', snapshot, false);
-  btnStartTimer.addEventListener('click', startTimer, false);
+  };
 
-
-
-  function snapshot() {
+  self.snapshot = function() {
     if (self.localMediaStream) {
       ctx.drawImage(self.video, 0, 0, width, height);
       // Other browsers will fall back to image/png.
@@ -90,7 +86,7 @@ Template.remoteWorkers.rendered = function () {
         console.log('Updated');
       });
     }
-  }
+  };
 
 };
 
@@ -103,11 +99,18 @@ Template.remoteWorkers.destroyed = function () {
 };
 
 Template.remoteWorkers.events({
+  'click #btnTakeSnapshot' : function(e, item) {
+    e.preventDefault();
+    Template.instance().snapshot();
+  },
+  'click #btnStartTimer' : function (e, item){
+    e.preventDefault();
+    Template.instance().startTimer();
+  },
   'click #btnJoin' : function(e, item) {
     e.preventDefault();
     Meteor.call('createRemoteWorker', function(error, result) {
       console.log('updated');
     });
-
   }
 });
