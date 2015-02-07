@@ -1,0 +1,23 @@
+<template name="remoteWorkers">
+  <h3>Remote workers: </h3>
+  <ul class="workerList">
+    <li>
+      {{#if me}}
+      {{me.username}} (you) - {{formatDate me.imageDate}}<br>
+      <img id="myImage" src="{{me.lastImage}}" /><br>
+      <button id="btnTakeScreenshot">Take Shot</button>
+      <button id="btnStartTimer">Start Timer</button>
+      {{else}}
+      <button id="btnJoin">Join Wall</button>
+      {{/if}}
+    </li>
+    {{#each remoteWorkersButMe}}
+      <li>{{username}} - {{formatDate imageDate}}<br/>
+        <img src="{{lastImage}}"/>
+      </li>
+    {{/each}}
+  </ul>
+  <video autoplay></video>
+
+  <canvas style="display:none"></canvas>
+</template>

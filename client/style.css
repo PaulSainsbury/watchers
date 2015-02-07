@@ -1,0 +1,7 @@
+.workerList li {
+  display : inline-block;
+  height: 200px;
+  width: 340px;
+  vertical-align: top;
+  text-align: middle;
+}
