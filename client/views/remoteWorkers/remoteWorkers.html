@@ -4,22 +4,33 @@
     <li>
       {{#if me}}
         {{#with me}}
-          {{formatName}} (you) - {{formatDate imageDate}}<br>
-          <img id="myImage" src="{{lastImage}}" /><br>
-          <button id="btnTakeSnapshot">Take Shot</button>
-          <button id="btnStartTimer">Start Timer</button>
+          <div class="nameRow">
+            {{formatName}} (you) - {{formatDate imageDate}}
+          </div>
+          <img id="myImage" src="{{lastImage}}" /><br/>
+          <div class="buttonRow">
+            <button id="btnTakeSnapshot">Take Shot</button>
+            <button id="btnStartTimer">Start Timer</button>
+          </div>
         {{/with}}
       {{else}}
         <button id="btnJoin">Join Wall</button>
       {{/if}}
     </li>
     {{#each remoteWorkersButMe}}
-      <li>{{formatName}} - {{formatDate imageDate}}<br/>
-        <img src="{{lastImage}}"/>
+      <li>
+        <div class="nameRow">
+          {{formatName}} - {{formatDate imageDate}}<br/>
+        </div>
+        <img src="{{lastImage}}"/><br/>
+        <div class="buttonRow">
+          <div style="float:left"><a href="{{callUrl}}">Call</a></div>
+          <div style="float:right"><a href="{{chatUrl}}">Chat</a></div>
+        </div>
       </li>
     {{/each}}
   </ul>
-  <video autoplay></video>
 
-  <canvas style="display:none"></canvas>
+  <video id="videoCapture" autoplay></video>
+  <canvas id="canvasCapture" style="display:none"></canvas>
 </template>

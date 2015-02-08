@@ -12,3 +12,4 @@ houston:admin
 twbs:bootstrap
 ian:accounts-ui-bootstrap-3
 momentjs:moment
+chrismbeckett:toastr

@@ -15,6 +15,12 @@ Template.profileEdit.events({
       chatUrl   : chatUrl
     };
 
-    Meteor.call('updateProfile', userProfile);
+    Meteor.call('updateProfile', userProfile, function(err){
+      if (err) {
+        toastr.error('Error saving profile: ' + err.message);
+      } else {
+        toastr.success('Profile updated');
+      }
+    });
   }
 });

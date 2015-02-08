@@ -35,5 +35,6 @@ Meteor.methods({
         imageDate: new Date()
       }
     });
+    return true;
   }
 });

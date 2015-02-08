@@ -14,11 +14,19 @@ Template.remoteWorkers.helpers({
   formatDate : function (date) {
     if (date)
       return moment(date).fromNow();
-    return 'No Date';
+    return 'No Image';
   },
   formatName : function() {
     var user = Meteor.users.findOne({ username : this.username});
     return user.profile.firstName || this.username;
+  },
+  callUrl : function() {
+    var user = Meteor.users.findOne({ username : this.username});
+    return user.profile.callUrl;
+  },
+  chatUrl : function() {
+    var user = Meteor.users.findOne({ username : this.username});
+    return user.profile.chatUrl;
   }
 });
 
@@ -57,7 +65,7 @@ Template.remoteWorkers.rendered = function () {
     self.video.height = 1;
     self.video.width = 1;
   }, function() {
-      console.log('Error loading stream');
+      toastr.error('Error loading stream');
   });
 
   self.timerID = null;
@@ -83,7 +91,11 @@ Template.remoteWorkers.rendered = function () {
       document.querySelector('#myImage').src = imageString;
 
       Meteor.call('updateRemoteWorkerImage', Meteor.user().username, imageString, function(error, result){
-        console.log('Updated');
+        if (error) {
+          toastr.error('Error updating image: ' + error.message);
+        } else {
+          toaster.success('Image Updated');
+        }
       });
     }
   };
@@ -110,7 +122,11 @@ Template.remoteWorkers.events({
   'click #btnJoin' : function(e, item) {
     e.preventDefault();
     Meteor.call('createRemoteWorker', function(error, result) {
-      console.log('updated');
+      if (error) {
+        toastr.error('Error joining group: ' + error.message);
+      } else {
+        toastr.success('Successfully joined group');
+      }
     });
   }
 });
