@@ -11,14 +11,14 @@ Template.remoteWorkers.created = function () {
 };
 
 Template.remoteWorkers.helpers({
-  /*saveData : function (userName, imageString) {
-    console.log('About to update', userName, imageString);
-
-  }*/
   formatDate : function (date) {
     if (date)
       return moment(date).fromNow();
-    return '';
+    return 'No Date';
+  },
+  formatName : function() {
+    var user = Meteor.users.findOne({ username : this.username});
+    return user.profile.firstName || this.username;
   }
 });
 

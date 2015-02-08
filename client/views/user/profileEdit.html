@@ -1,0 +1,39 @@
+<template name="profileEdit">
+  <form>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text"
+          class="form-control"
+          id="firstName"
+          placeholder="First Name"
+          value="{{profile.firstName}}"/>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text"
+          class="form-control"
+          id="lastName"
+          placeholder="Last Name"
+          value="{{profile.lastName}}"/>
+    </div>
+    <div class="form-group">
+      <label for="callUrl">Call URL</label>
+      <p class="help-block">Enter a url that can be used to initiate a call to you. e.g. skype:&lt;user&gt;?call</p>
+      <input type="url"
+          class="form-control"
+          id="callUrl"
+          placeholder="Call URL"
+          value="{{profile.callUrl}}"/>
+    </div>
+    <div class="form-group">
+      <label for="callUrl">Messaging URL</label>
+      <p class="help-block">Enter a url that can be used to initiate an IM to you. e.g. skype:&lt;user&gt;?chat</p>
+      <input type="url"
+          class="form-control"
+          id="chatUrl"
+          placeholder="Chat URL"
+          value="{{profile.chatUrl}}"/>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</template>

@@ -43,7 +43,7 @@ Router.map(function() {
   // RemoteWorkers
   this.route('remoteWorkers', {
     waitOn: function () {
-      return Meteor.subscribe('allRemoteWorkers');
+      return [Meteor.subscribe('allRemoteWorkers'), Meteor.subscribe('userProfiles') ];
     },
     data: function () {
       var currentUser = Meteor.user();
@@ -61,6 +61,12 @@ Router.map(function() {
         };
 
       }
+    }
+  });
+  // profileEdit
+  this.route('profileEdit', {
+    data : function () {
+      return Meteor.user();
     }
   });
 

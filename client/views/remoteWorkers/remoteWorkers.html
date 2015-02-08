@@ -3,16 +3,18 @@
   <ul class="workerList">
     <li>
       {{#if me}}
-      {{me.username}} (you) - {{formatDate me.imageDate}}<br>
-      <img id="myImage" src="{{me.lastImage}}" /><br>
-      <button id="btnTakeSnapshot">Take Shot</button>
-      <button id="btnStartTimer">Start Timer</button>
+        {{#with me}}
+          {{formatName}} (you) - {{formatDate imageDate}}<br>
+          <img id="myImage" src="{{lastImage}}" /><br>
+          <button id="btnTakeSnapshot">Take Shot</button>
+          <button id="btnStartTimer">Start Timer</button>
+        {{/with}}
       {{else}}
-      <button id="btnJoin">Join Wall</button>
+        <button id="btnJoin">Join Wall</button>
       {{/if}}
     </li>
     {{#each remoteWorkersButMe}}
-      <li>{{username}} - {{formatDate imageDate}}<br/>
+      <li>{{formatName}} - {{formatDate imageDate}}<br/>
         <img src="{{lastImage}}"/>
       </li>
     {{/each}}

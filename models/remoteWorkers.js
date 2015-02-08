@@ -1,15 +1,6 @@
-/* ---------------------------------------------------- +/
-
-## Items ##
-
-All code related to the Items collection goes here.
-
-/+ ---------------------------------------------------- */
-
 RemoteWorkers = new Meteor.Collection('remoteWorkers');
 
 // Allow/Deny
-
 RemoteWorkers.allow({
   insert: function(userId, doc){
     return can.createRemoteWorker(userId);
@@ -23,11 +14,9 @@ RemoteWorkers.allow({
 });
 
 // Methods
-
 Meteor.methods({
   createRemoteWorker: function(){
     if(can.createRemoteWorker(Meteor.user()._id)) {
-      console.log('createRemoteWorker');
       var user = Meteor.user();
       RemoteWorkers.insert({ username: user.username });
     }
