@@ -7,7 +7,7 @@
   margin-right  : 10px;
 }
 
-#canvasCapture,.workerList img {
+#canvasCapture,.workerList img, .imageCover {
   width : 300px;
   height: 150px;
 }
@@ -19,4 +19,22 @@
 
 .buttonRow {
   margin-top: 2px;
+}
+
+.imageCover {
+  position: absolute;
+}
+
+.Away, .DND, .BRB {
+  opacity: 0.7;
+}
+
+.Away {
+  background-color: #777777;
+}
+.DND {
+  background-color: #995555;
+}
+.BRB {
+  background-color: #5577BB;
 }

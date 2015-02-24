@@ -5,12 +5,19 @@
       {{#if me}}
         {{#with me}}
           <div class="nameRow">
-            {{formatName}} (you) - {{formatDate imageDate}}
+            {{formatName}} (you - {{userStatus}}) - {{formatDate imageDate}}
           </div>
+          <div class="imageCover {{userStatus}}"></div>
           <img id="myImage" src="{{lastImage}}" /><br/>
           <div class="buttonRow">
             <button id="btnTakeSnapshot">Take Shot</button>
             <button id="btnStartTimer">Start Timer</button>
+            <select id="selStatus">
+              <option {{selectedIfEquals userStatus "Online"}}>Online</option>
+              <option {{selectedIfEquals userStatus "Away"}}>Away</option>
+              <option {{selectedIfEquals userStatus "BRB"}}>BRB</option>
+              <option {{selectedIfEquals userStatus "DND"}}>DND</option>
+            </select>
           </div>
         {{/with}}
       {{else}}
@@ -20,8 +27,9 @@
     {{#each remoteWorkersButMe}}
       <li>
         <div class="nameRow">
-          {{formatName}} - {{formatDate imageDate}}<br/>
+          {{formatName}} ({{userStatus}}) - {{formatDate imageDate}}<br/>
         </div>
+        <div class="imageCover {{userStatus}}"></div>
         <img src="{{lastImage}}"/><br/>
         <div class="buttonRow">
           <div style="float:left"><a href="{{callUrl}}">Call</a></div>

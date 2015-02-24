@@ -11,5 +11,16 @@ Meteor.methods({
         'profile.chatUrl'   : userProfile.chatUrl
       }
     });
+  },
+  updateStatus: function(status) {
+    var user = Meteor.user();
+    Meteor.users.update({
+      _id : user._id,
+    }, {
+      $set : {
+        'profile.status' : status
+      }
+    });
+
   }
 });

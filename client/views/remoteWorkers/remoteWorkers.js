@@ -27,7 +27,12 @@ Template.remoteWorkers.helpers({
   chatUrl : function() {
     var user = Meteor.users.findOne({ username : this.username});
     return user.profile.chatUrl;
+  },
+  userStatus : function () {
+    var user = Meteor.users.findOne({ username : this.username});
+    return user.profile.status;
   }
+
 });
 
 Template.remoteWorkers.rendered = function () {
@@ -94,7 +99,7 @@ Template.remoteWorkers.rendered = function () {
         if (error) {
           toastr.error('Error updating image: ' + error.message);
         } else {
-          toaster.success('Image Updated');
+          toastr.success('Image Updated');
         }
       });
     }
@@ -128,5 +133,18 @@ Template.remoteWorkers.events({
         toastr.success('Successfully joined group');
       }
     });
+  },
+  'change #selStatus' : function(e, item) {
+      e.preventDefault();
+      var target = $(e.target),
+        status =target.val();
+
+      Meteor.call('updateStatus', status, function(err){
+        if (err) {
+          toastr.error('Error saving status: ' + err.message);
+        } else {
+          toastr.success('Status updated');
+        }
+      });
   }
 });
