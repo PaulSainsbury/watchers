@@ -18,10 +18,6 @@ Router.configure({
 
 var filters = {
 
-  myFilter: function () {
-    // do something
-  },
-
   isLoggedIn: function() {
     if (!(Meteor.loggingIn() || Meteor.user())) {
       toastr.warning('You must be logged in to access that page');
@@ -34,7 +30,6 @@ var filters = {
 
 };
 
-Router.onBeforeAction(filters.myFilter, {only: ['items']});
 Router.onBeforeAction(filters.isLoggedIn, {only: ['remoteWorkers']});
 
 // Routes
@@ -53,7 +48,6 @@ Router.map(function() {
           remoteWorkersButMe: RemoteWorkers.find({ username : { $ne : currentUser.username }}),
           me : RemoteWorkers.findOne({ username: currentUser.username })
         };
-        //console.log(value);
         return value;
       } else {
         return {

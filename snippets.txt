@@ -1,0 +1,9 @@
+  db.remoteWorkers.find({}, {username: 1, imageDate: 1});
+
+db.getCollection('users').find({}, {
+      _id : 1,
+      username: 1,
+      'profile.firstName' : 1,
+      'profile.callUrl' : 1,
+      'profile.chatUrl' : 1
+    });

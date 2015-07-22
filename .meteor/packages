@@ -8,8 +8,10 @@ accounts-base
 accounts-password
 iron:router
 alanning:roles
-houston:admin
 twbs:bootstrap
 ian:accounts-ui-bootstrap-3
 momentjs:moment
 chrismbeckett:toastr
+houston:admin
+meteortoys:allthings
+meteorhacks:kadira

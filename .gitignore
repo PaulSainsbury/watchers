@@ -1,6 +1,8 @@
 .DS_Store
 *.sublime-project
 *.sublime-workspace
+.idea
 .meteor/.id
 .meteor/local
 .meteor/meteorite
+server/kadira.js

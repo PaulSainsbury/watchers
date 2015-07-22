@@ -8,10 +8,12 @@ Meteor.publish('singleRemoteWorker', function(id) {
 
 Meteor.publish('userProfiles', function() {
   return Meteor.users.find({}, {
-    _id : 1, 
-    username: 1,
-    'profile.firstName' : 1,
-    'profile.callUrl' : 1,
-    'profile.chatUrl' : 1
+    fields: {
+      _id : 1,
+      username: 1,
+      'profile.firstName' : 1,
+      'profile.callUrl' : 1,
+      'profile.chatUrl' : 1
+    }
   });
 });
